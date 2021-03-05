@@ -11,7 +11,7 @@ repository:
   enable_automated_security_fixes: true
   enable_vulnerability_alerts: true
  
- labels:
+labels:
   # Custom
   - name: maintenance
     color: E9B864
@@ -22,12 +22,12 @@ repository:
   # Default
   - name: bug
     color: CC0000
-    description: Something isn't working
+    description: "Something isn't working"
   - name: documentation
     color: 0075CA
     description: Improvements or additions to documentation
   - name: duplicate
-    color: cfd3d7
+    color: CFD3D7
     description: This issue or pull request already exists
   - name: enhancement
     color: A2EEEF
@@ -40,7 +40,7 @@ repository:
     description: Extra attention is needed
   - name: invalid
     color: E4E669
-    description: This doesn't seem right
+    description: "This doesn't seem right"
   - name: question
     color: D876E3
     description: Further information is requested
