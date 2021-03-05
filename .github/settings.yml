@@ -12,18 +12,42 @@ repository:
   enable_vulnerability_alerts: true
 
 labels:
-  - name: bug
-    color: CC0000
-    description: Something isn't working
+  # Custom
   - name: maintenance
     color: E9B864
     description: Regular maintenance tasks
-  - name: enhancement
-    color: A2EEEF
-    description: New feature or request
   - name: breaking change
     color: B60205
     description: Change is not backwards compatible
+
+  # Default
+  - name: bug
+    color: CC0000
+    description: Something isn't working
+  - name: documentation
+    color: 0075CA
+    description: Improvements or additions to documentation
+  - name: duplicate
+    color: cfd3d7
+    description: This issue or pull request already exists
+  - name: enhancement
+    color: A2EEEF
+    description: New feature or request
+  - name: good first issue
+    color:#7057ff
+    description: Good for newcomers
+  - name: help wanted
+    color:#008672
+    description: Extra attention is needed
+  - name: invalid
+    color:#e4e669
+    description: This doesn't seem right
+  - name: question
+    color:#d876e3
+    description: Further information is requested
+  - name: wontfix
+    color:#ffffff
+    description: This will not be worked on
 
 branches:
   - name: main
