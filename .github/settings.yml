@@ -1,0 +1,36 @@
+---
+repository:
+  name: test_repo
+  description: Repository for running experiments and tests against
+  private: false
+  has_issues: true
+  default_branch: main
+  allow_squash_merge: true
+  allow_merge_commit: true
+  allow_rebase_merge: true
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true
+
+labels:
+  - name: bug
+    color: CC0000
+    description: Something isn't working
+  - name: maintenance
+    color: E9B864
+    description: Regular maintenance tasks
+  - name: enhancement
+    color: A2EEEF
+    description: New feature or request
+  - name: breaking change
+    color: B60205
+    description: Change is not backwards compatible
+
+branches:
+  - name: main
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: false
+        require_code_owner_reviews: true
+      enforce_admins: true
+      required_linear_history: true
