@@ -32,11 +32,11 @@ jobs:
           node-version: '14'
 
       - name: install
-        working-dir: ./.github/action
+        working-directory: ./.github/action
         run: npm install
 
       - name: build
-        working-dir: ./.github/action
+        working-directory: ./.github/action
         run: npm run build
 
       - name: 'Determine version'
@@ -67,11 +67,11 @@ jobs:
           node-version: '12'
 
       - name: install
-        working-dir: ./.github/action
+        working-directory: ./.github/action
         run: npm install
 
       - name: build
-        working-dir: ./.github/action
+        working-directory: ./.github/action
         run: npm run build
 
       - name: 'Determine version'
