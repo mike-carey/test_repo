@@ -16,12 +16,6 @@ defaults:
     shell: bash
 
 jobs:
-  label:
-    name: 'Label based on branch'
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.opened == true
-    steps: []
-
   check:
     name: 'Check for labels'
     runs-on: ubuntu-latest
