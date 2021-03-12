@@ -19,6 +19,7 @@ jobs:
   check:
     name: 'Check for labels'
     runs-on: ubuntu-latest
+    if: github.event.pull_request.closed != true
     steps:
       - name: 'Checkout bd-version-action'
         uses: actions/checkout@v2
