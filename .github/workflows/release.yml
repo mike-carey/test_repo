@@ -1,0 +1,81 @@
+---
+name: 'Automated Release'
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - labeled
+      - closed
+      - opened
+      - reopened
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  label:
+    name: 'Label based on branch'
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.opened == true
+    steps: []
+
+  check:
+    name: 'Check for labels'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout bd-version-action'
+        uses: actions/checkout@v2
+        with:
+          repository: shopsmart/bd-version-action
+          ssh-key: ${{ secrets.BD_VERSION_ACTION_KEY }}
+          path: ./.github/action
+
+      - name: 'Determine version'
+        id: version
+        # uses: shopsmart/bd-version-action@v1
+        uses: ./.github/action
+        with:
+          post_comments: 'true'
+
+  release:
+    name: 'Create Release'
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: 'Checkout bd-version-action'
+        uses: actions/checkout@v2
+        with:
+          repository: shopsmart/bd-version-action
+          ssh-key: ${{ secrets.BD_VERSION_ACTION_KEY }}
+          path: ./.github/action
+
+      - name: 'Determine version'
+        id: version
+        # uses: shopsmart/bd-version-action@v1
+        uses: ./.github/action
+        with:
+          post_comments: 'false'
+
+      - name: Get datetime
+        id: datetime
+        env:
+          DATE_FORMAT: '%B %d, %Y %I:%M %p' # January 21, 2021 05:10 PM
+        run: |
+          today=$(date +"$DATE_FORMAT")
+          echo "::set-output name=today::$today"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        if: ${{ steps.version.outputs.bump_level }} != null
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: "${{ steps.version.outputs.version }}: ${{ steps.datetime.outputs.today }}"
+          draft: false
+          prerelease: false
