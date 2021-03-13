@@ -45,5 +45,10 @@ jobs:
         # uses: shopsmart/bd-version-action@v1
         uses: ./.github/action
         with:
-          post_comments: 'true'
+          post_comments: 'false'
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          body: The next release will be ${{ steps.version.outputs.version }}
