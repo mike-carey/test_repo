@@ -46,3 +46,4 @@ jobs:
         uses: ./.github/action
         with:
           post_comments: 'true'
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
