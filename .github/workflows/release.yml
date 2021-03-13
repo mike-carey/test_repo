@@ -6,46 +6,13 @@ on:
     branches:
       - main
     types:
-      - labeled
       - closed
-      - opened
-      - reopened
 
 defaults:
   run:
     shell: bash
 
 jobs:
-  check:
-    name: 'Check for labels'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout bd-version-action'
-        uses: actions/checkout@v2
-        with:
-          repository: shopsmart/bd-version-action
-          ssh-key: ${{ secrets.BD_VERSION_ACTION_KEY }}
-          path: ./.github/action
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: install
-        working-directory: ./.github/action
-        run: npm install
-
-      - name: build
-        working-directory: ./.github/action
-        run: npm run build
-
-      - name: 'Determine version'
-        id: version
-        # uses: shopsmart/bd-version-action@v1
-        uses: ./.github/action
-        with:
-          post_comments: 'true'
-
   release:
     name: 'Create Release'
     runs-on: ubuntu-latest
@@ -60,7 +27,7 @@ jobs:
           repository: shopsmart/bd-version-action
           ssh-key: ${{ secrets.BD_VERSION_ACTION_KEY }}
           path: ./.github/action
-
+          ref: initial-code
 
       - uses: actions/setup-node@v2
         with:

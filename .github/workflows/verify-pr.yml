@@ -1,0 +1,48 @@
+---
+name: 'Verify PR'
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - labeled
+      - unlabeled
+      - opened
+      - reopened
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check:
+    name: 'Check for labels'
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.closed != true
+    steps:
+      - name: 'Checkout bd-version-action'
+        uses: actions/checkout@v2
+        with:
+          repository: shopsmart/bd-version-action
+          ref: initial-code
+          ssh-key: ${{ secrets.BD_VERSION_ACTION_KEY }}
+          path: ./.github/action
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: install
+        working-directory: ./.github/action
+        run: npm install
+
+      - name: build
+        working-directory: ./.github/action
+        run: npm run build
+
+      - name: 'Determine version'
+        id: version
+        # uses: shopsmart/bd-version-action@v1
+        uses: ./.github/action
+        with:
+          post_comments: 'true'
