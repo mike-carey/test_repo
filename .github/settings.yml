@@ -1,7 +1,7 @@
 ---
 repository:
   name: test_repo
-  description: Repository for running experiments and tests against
+  description: \**DEPRECATED** Repository for running experiments and tests against
   private: false
   has_issues: true
   has_wiki: false
