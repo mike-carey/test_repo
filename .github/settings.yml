@@ -4,6 +4,7 @@ repository:
   description: Repository for running experiments and tests against
   private: false
   has_issues: true
+  has_wiki: true
   default_branch: main
   allow_squash_merge: true
   allow_merge_commit: true
