@@ -11,9 +11,6 @@ runs:
   using: 'composite'
   steps:
     -
-      name: 'Checkout'
-      uses: actions/checkout@v2
-    -
       name: 'Determine node version'
       id: version
       run: $GITHUB_ACTION_PATH/setup.sh

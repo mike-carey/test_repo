@@ -15,9 +15,6 @@ runs:
   using: 'composite'
   steps:
     -
-      name: 'Checkout?'
-      uses: actions/checkout@v2
-    -
       name: 'Setup'
       uses: mike-carey/test_repo/actions/setup@master
     -
