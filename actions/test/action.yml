@@ -1,0 +1,26 @@
+---
+name: 'Test'
+
+inputs:
+  node_version:
+    description: 'The node version to use'
+    type: string
+    default: ''
+  command:
+    description: 'The command to run'
+    type: string
+    default: 'test'
+
+runs:
+  using: 'composite'
+  steps:
+    # -
+    #   name: 'Checkout?'
+    #   uses: actions/checkout@v2
+    -
+      name: 'Setup'
+      uses: ${{ github.action_path }}/../setup
+    -
+      name: 'Run npm command'
+      shell: bash
+      run: npm run ${{ inputs.command }}
