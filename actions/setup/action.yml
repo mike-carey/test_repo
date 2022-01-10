@@ -16,7 +16,7 @@ runs:
     -
       name: 'Determine node version'
       id: version
-      run: ${{ github.action_path }}/setup.sh
+      run: $GITHUB_ACTION_PATH/setup.sh
       shell: bash
       env:
         NODE_VERSION: ${{ inputs.node_version }}
