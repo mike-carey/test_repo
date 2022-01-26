@@ -1,0 +1,13 @@
+---
+name: 'Ugh'
+
+runs:
+  using: 'composite'
+  steps:
+    -
+      name: 'Run common script'
+      run: $GITHUB_ACTION_PATH/script.sh
+      shell: bash
+    -
+      run: echo ${{ steps.script.outputs.message }}
+      shell: bash
