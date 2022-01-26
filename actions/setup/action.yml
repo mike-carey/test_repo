@@ -11,6 +11,10 @@ runs:
   using: 'composite'
   steps:
     -
+      name: 'Run common script'
+      run: $GITHUB_ACTION_PATH/script.sh
+      shell: bash
+    -
       name: 'Determine node version'
       id: version
       run: $GITHUB_ACTION_PATH/setup.sh
