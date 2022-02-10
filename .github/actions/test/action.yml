@@ -6,8 +6,10 @@ runs:
   using: 'composite'
   steps:
     - name: 'Fail'
+      shell: bash
       run: exit 1
     
     - name: 'Status'
       if: always()
+      shell: bash
       run: echo ${{ job.status }}
