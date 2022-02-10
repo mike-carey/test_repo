@@ -17,3 +17,18 @@ jobs:
         uses: actions/checkout@v2
 
       - uses: ./.github/actions/test
+
+      - name: 'Status'
+        if: always()
+        run: echo ${{ job.status }}
+
+  amicrazy:
+    name: 'Am I crazy?'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Fail'
+        run: echo ${{ job.status }}
+
+      - name: 'Status'
+        if: always()
+        run: echo ${{ job.status }}
