@@ -1,0 +1,13 @@
+---
+
+name: 'Test'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Fail'
+      run: exit 1
+    
+    - name: 'Status'
+      if: always()
+      run: echo ${{ job.status }}
