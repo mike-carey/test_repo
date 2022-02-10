@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Fail'
-        run: echo ${{ job.status }}
+        run: exit 1
 
       - name: 'Status'
         if: always()
