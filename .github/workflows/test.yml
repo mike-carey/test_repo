@@ -35,4 +35,4 @@ jobs:
 
   test-2:
     name: 'Test 2'
-    uses: ./.github/reusable/test.yml
+    uses: ./.github/workflows/reusable.yml

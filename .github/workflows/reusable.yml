@@ -1,6 +1,6 @@
 ---
 
-name: 'Test'
+name: 'Reusable Test'
 on: [workflow_call]
 
 defaults:
