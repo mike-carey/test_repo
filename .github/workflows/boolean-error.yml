@@ -1,0 +1,32 @@
+---
+
+name: 'Uses a reusable workflow with boolean input'
+
+on: [workflow_dispatch]
+
+jobs:
+  info:
+    name: 'Gather information'
+    runs-on: ubuntu-latest
+    outputs:
+      my-boolean-output: ${{ steps.info.outputs.my-boolean-output }}
+    steps:
+      - run: echo "::set-output name=my-boolean-output::true"
+        shell: bash
+        id: info
+
+  success:
+    name: 'Properly "casts" the string to boolean'
+    runs-on: ubuntu-latest
+    needs: info
+    uses: ./.github/workflows/accepts-boolean.yml
+    with:
+      foo: ${{ needs.info.outputs.my-boolean-output == 'true' }}
+  
+  failure:
+    name: 'Incorrectly "casts" the string to boolean'
+    runs-on: ubuntu-latest
+    needs: info
+    uses: ./.github/workflows/accepts-boolean.yml
+    with:
+      foo: ${{ needs.info.outputs.my-boolean-output }}

@@ -1,0 +1,18 @@
+---
+
+name: 'Accepts boolean input'
+
+on:
+  workflow_call:
+    inputs:
+      foo:
+        type: boolean
+        default: false
+
+jobs:
+  test:
+    name: 'Test'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ inputs.foo }}
+        shell: bash
