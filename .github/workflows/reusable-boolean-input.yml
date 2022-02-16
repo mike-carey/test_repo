@@ -1,0 +1,24 @@
+---
+
+name: 'Boolean inputs within reusable workflows'
+
+on:
+  workflow_call:
+    inputs:
+      my-boolean:
+        description: 'Boolean input'
+        type: boolean
+        default: false
+
+jobs:
+  reusable-workflow-inputs-are-strings:
+    name: 'Reusable workflow inputs are strings'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'This should be false'
+        shell: bash
+        run: echo ${{ inputs.my-boolean == 'true' }}
+
+      - name: 'This should be true'
+        shell: bash
+        run: echo ${{ inputs.my-boolean == true }}
