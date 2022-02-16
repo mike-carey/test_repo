@@ -1,0 +1,41 @@
+---
+
+name: 'Check booleans'
+
+on:
+  workflow_dispatch:
+    my-boolean:
+      description: 'Boolean input'
+      type: boolean
+      default: false
+
+jobs:
+  workflow-dispatch-inputs-are-strings:
+    name: 'Workflow dispatch inputs are strings'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'This should be true'
+        shell: bash
+        run: echo ${{ github.event.inputs.my-boolean == 'true' }}
+
+      - name: 'This should be false'
+        shell: bash
+        run: echo ${{ github.event.inputs.my-boolean == true }}
+
+  composite-action-inputs-are-strings:
+    name: 'Workflow dispatch inputs are strings'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      
+      - name: 'Composite action inputs are strings'
+        uses: ./.github/actions/boolean-input
+        with:
+          my-boolean: true
+
+  reusable-workflow-inputs-are-booleans:
+    name: 'Reusable workflow inputs are booleans'
+    uses: ./.github/workflows/check-booleans.yml
+    with:
+      my-boolean: true
