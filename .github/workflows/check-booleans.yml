@@ -4,10 +4,11 @@ name: 'Check booleans'
 
 on:
   workflow_dispatch:
-    my-boolean:
-      description: 'Boolean input'
-      type: boolean
-      default: false
+    inputs:
+      my-boolean:
+        description: 'Boolean input'
+        type: boolean
+        default: false
 
 jobs:
   workflow-dispatch-inputs-are-strings:
@@ -23,7 +24,7 @@ jobs:
         run: echo ${{ github.event.inputs.my-boolean == true }}
 
   composite-action-inputs-are-strings:
-    name: 'Workflow dispatch inputs are strings'
+    name: 'Composite action inputs are strings'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
