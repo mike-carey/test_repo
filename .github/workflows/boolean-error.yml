@@ -29,9 +29,9 @@ jobs:
     with:
       foo: ${{ needs.info.outputs.my-boolean-output }}
 
-  go-further:
-    name: 'Passes arbitrary string as boolean'
-    needs: info
-    uses: ./.github/workflows/accepts-boolean.yml
-    with:
-      foo: sure
+#   go-further:
+#     name: 'Passes arbitrary string as boolean'
+#     needs: info
+#     uses: ./.github/workflows/accepts-boolean.yml
+#     with:
+#       foo: sure
