@@ -36,6 +36,6 @@ jobs:
 
   reusable-workflow-inputs-are-booleans:
     name: 'Reusable workflow inputs are booleans'
-    uses: ./.github/workflows/reusable-boolean-inputs.yml
+    uses: ./.github/workflows/reusable-boolean-input.yml
     with:
       my-boolean: true
