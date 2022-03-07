@@ -26,6 +26,9 @@ jobs:
     name: 'Am I crazy?'
     runs-on: ubuntu-latest
     steps:
+      - name: 'WTF?'
+        run: echo "[ERROR] Umm, wtf?" >&2
+
       - name: 'Fail'
         run: exit 1
 
