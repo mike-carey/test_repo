@@ -27,7 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'WTF?'
-        run: echo "[ERROR] Umm, wtf?" >&2
+        run: |
+          echo "This is not an error" >&2
+          echo "error v2" >&2
+          echo "another error" >&2
+          echo "[ERROR] Umm, wtf?" >&2
 
       - name: 'Fail'
         run: exit 1
