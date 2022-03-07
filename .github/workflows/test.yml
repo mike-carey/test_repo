@@ -33,6 +33,7 @@ jobs:
           echo "another error" >&2
           echo "not [error]" >&2
           echo "not [ERROR]" >&2
+          echo "Is [er a special character or something?" >&2
           echo "[error] not an error" >&2
           echo "[ERROR] Umm, wtf?" >&2
 
