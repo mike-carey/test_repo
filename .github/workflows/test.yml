@@ -11,4 +11,4 @@ defaults:
 jobs:
   test:
     name: 'Tests usage of vars from reusable workflows'
-    uses: mike-carey/test/.github/workflows/reusable-workflow.yml
+    uses: mike-carey/test/.github/workflows/reusable-workflow.yml@main
