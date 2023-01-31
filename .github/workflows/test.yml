@@ -10,40 +10,5 @@ defaults:
 
 jobs:
   test:
-    name: 'Test'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-
-      - uses: ./.github/actions/test
-
-      - name: 'Status'
-        if: always()
-        run: echo ${{ job.status }}
-
-  amicrazy:
-    name: 'Am I crazy?'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'WTF?'
-        run: |
-          echo "This is not an error" >&2
-          echo "error v2" >&2
-          echo "another error" >&2
-          echo "not [error]" >&2
-          echo "not [ERROR]" >&2
-          echo "Is [er a special character or something?" >&2
-          echo "[error] not an error" >&2
-          echo "[ERROR] Umm, wtf?" >&2
-
-      - name: 'Fail'
-        run: exit 1
-
-      - name: 'Status'
-        if: always()
-        run: echo ${{ job.status }}
-
-  test-2:
-    name: 'Test 2'
-    uses: ./.github/workflows/reusable.yml
+    name: 'Tests usage of vars from reusable workflows'
+    uses: mike-carey/test/.github/workflows/reusable-workflow.yml
