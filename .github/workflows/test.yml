@@ -2,13 +2,24 @@
 
 name: 'Test'
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      cluster:
+        description: 'blah'
+        type: string
+        required: false
 
 defaults:
   run:
     shell: bash
 
+env:
+  SERVICE_ARN: arn:aws:ecs:blah:blah:service/${{ inputs.cluster && format('{0}/', inputs.cluster) }}
+
 jobs:
   test:
-    name: 'Tests usage of vars from reusable workflows'
-    uses: mike-carey/test/.github/workflows/reusable-workflow.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Test'
+        run: echo ${{ env.SERVICE_ARN }}
