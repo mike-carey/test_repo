@@ -1,0 +1,41 @@
+###
+# There seems to be a new bug that causes brew installs to fail for any nodejs dependencies.
+# When attempting to install any nodejs dependency, one gets:
+#
+# ```
+# ==> Downloading https://ghcr.io/v2/homebrew/core/node/manifests/21.6.2
+# Warning: No available formula with the name "python" (dependency of node). Did you mean ipython, bpython, wxpython, pythran, jython, cython or ptpython?
+# ==> Searching for similarly named formulae...
+# ```
+##
+---
+
+name: 'Demonstrates error with installing nodejs dependencies via brew'
+
+on:
+  - pull_request
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  install:
+    name: install
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - id: install
+        run: brew install node
+        continue-on-error: true
+
+      - run: brew config
+
+      - run: brew doctor
+        continue-on-error: true
+
+      - run: brew info node
