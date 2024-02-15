@@ -26,6 +26,7 @@ jobs:
       - run: brew info
 
       - run: brew doctor
+        continue-on-error: true
 
       - run: brew info markdownlint-cli
 
