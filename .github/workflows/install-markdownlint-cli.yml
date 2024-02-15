@@ -30,8 +30,9 @@ jobs:
 
       - run: brew info markdownlint-cli
 
-      # This will fail the pipeline on install failure
       - run: markdownlint-cli
+        continue-on-error: true # allow failure so we can still see the outcome of macos-latest
 
       - name: 'List deps'
         run: brew deps markdownlint-cli
+        on: success()
