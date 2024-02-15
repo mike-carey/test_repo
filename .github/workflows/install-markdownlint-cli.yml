@@ -30,17 +30,8 @@ jobs:
 
       - run: brew info markdownlint-cli
 
-      - name: 'List all deps'
-        run: |
-          echo "------- markdownlint-cli -------"
-          brew deps markdownlint-cli
-          echo ''
-
-          brew deps markdownlint-cli | while read -r dep; do
-            echo "------- $dep -------"
-            brew deps "$dep"
-            echo ''
-          done
-
       # This will fail the pipeline on install failure
       - run: markdownlint-cli
+
+      - name: 'List deps'
+        run: brew deps markdownlint-cli
