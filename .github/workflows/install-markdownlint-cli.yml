@@ -17,8 +17,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
     steps:
-      - name: 'Set up Homebrew'
-        uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - id: install
+        run: brew install markdownlint-cli
+        continue-on-error: true
 
       - run: brew info
 
@@ -26,4 +29,5 @@ jobs:
 
       - run: brew info markdownlint-cli
 
-      - run: brew install markdownlint-cli
+      # This will fail the pipeline on install failure
+      - run: markdownlint-cli
