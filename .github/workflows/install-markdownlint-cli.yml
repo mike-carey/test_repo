@@ -33,4 +33,4 @@ jobs:
 
       - name: 'List deps'
         run: brew deps markdownlint-cli
-        on: success()
+        if: success()
