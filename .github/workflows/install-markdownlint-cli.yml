@@ -15,7 +15,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - name: 'Set up Homebrew'
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@c0da5b8e52ca271ccae6f959a7140c05b09b303a
 
       - name: 'Install markdownlint-cli'
         shell: bash
