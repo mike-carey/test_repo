@@ -5,9 +5,12 @@ name: 'Demonstrates error with installing markdownlint-cli'
 on:
   - pull_request
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   install:
-    # If this name field is changed, so must the context within the .github/settings.yml
     name: install
     runs-on: ${{ matrix.os }}
     strategy:
@@ -15,9 +18,12 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - name: 'Set up Homebrew'
-        uses: Homebrew/actions/setup-homebrew@c0da5b8e52ca271ccae6f959a7140c05b09b303a
+        uses: Homebrew/actions/setup-homebrew@master
 
-      - name: 'Install markdownlint-cli'
-        shell: bash
-        run: |
-          brew install markdownlint-cli || brew info markdownlint-cli
+      - run: brew info
+
+      - run: brew doctor
+
+      - run: brew info markdownlint-cli
+
+      - run: brew install markdownlint-cli
