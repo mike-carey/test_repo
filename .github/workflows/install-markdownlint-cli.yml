@@ -30,7 +30,3 @@ jobs:
         continue-on-error: true
 
       - run: brew info ${{ matrix.dep }}
-
-      - name: 'List deps'
-        run: brew deps markdownlint-cli
-        if: success()
