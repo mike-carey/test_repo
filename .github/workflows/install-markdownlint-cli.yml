@@ -23,7 +23,7 @@ jobs:
         run: brew install markdownlint-cli
         continue-on-error: true
 
-      - run: brew info
+      - run: brew config
 
       - run: brew doctor
         continue-on-error: true
