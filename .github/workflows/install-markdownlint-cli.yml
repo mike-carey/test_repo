@@ -16,11 +16,12 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+        dep: [markdownlint-cli, markdownlint-cli2, node]
     steps:
       - uses: Homebrew/actions/setup-homebrew@master
 
       - id: install
-        run: brew install markdownlint-cli
+        run: brew install ${{ matrix.dep }}
         continue-on-error: true
 
       - run: brew config
@@ -28,10 +29,7 @@ jobs:
       - run: brew doctor
         continue-on-error: true
 
-      - run: brew info markdownlint-cli
-
-      - run: markdownlint-cli
-        continue-on-error: true # allow failure so we can still see the outcome of macos-latest
+      - run: brew info ${{ matrix.dep }}
 
       - name: 'List deps'
         run: brew deps markdownlint-cli
