@@ -9,7 +9,10 @@ jobs:
   install:
     # If this name field is changed, so must the context within the .github/settings.yml
     name: install
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: 'Set up Homebrew'
         uses: Homebrew/actions/setup-homebrew@master
